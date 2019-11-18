@@ -5,7 +5,7 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('csc317-termproject-scrable:server');
+var debug = require('debug')('photo-app:server');
 var http = require('http');
 
 /**
