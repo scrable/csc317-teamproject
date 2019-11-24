@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Post Images</title>
+    <link rel="stylesheet" type="text/css" href="../public/stylesheets/style.css">
+</head>
+<body>
+<div class="container">
+    <form method="POST" name="postImage" onsubmit="validatePost()">
+        <fieldset class="fieldset-form">
+            <legend class="page-title">Post image</legend>
+            <label for="ptitle">Post title</label>
+            <input class="input-field" type="text" id="ptitle" placeholder="Post title" name="title"/>
+
+            <label for="pdescription">Post description</label>
+            <input class="input-field" type="text" id="pdescription" placeholder="Post description" name="description"/>
+
+            <label for="img">Post image</label>
+            <input type="file" id="img" required alt="Post">
+        </fieldset>
+
+
+        <input type="checkbox" id="policy" required>
+        <label class="radio-btn" for="policy">I accept the Acceptable Use Policy for uploading images.</label><br/>
+
+        <input class="button" type="submit" value="Submit">
+    </form>
+</div>
+<script type="text/javascript" src="../js/formValidation.js"></script>
+</body>
+</html>
