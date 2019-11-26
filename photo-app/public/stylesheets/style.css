@@ -1,8 +1,58 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.container {
+  background-color: snow;
+  padding: 20px;
+  color: steelblue;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
 }
 
-a {
-  color: #00B7FF;
+.fieldset-form {
+  border: 2px solid steelblue;
+  border-radius: 8px;
+  padding: 5%;
+  margin: 5px;
+  width: 90%;
+}
+
+.page-title {
+  font-family: sans-serif;
+  font-weight: bold;
+}
+
+label {
+  display: inline-block;
+  padding: 10px 10px 10px 0;
+  font-family: sans-serif;
+}
+
+.input-field {
+  width: 100%;
+  border: 1px solid #cccccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+  padding: 10px;
+  resize: vertical;
+}
+
+.button {
+  border-radius: 5px;
+  background-color: steelblue;
+  padding: 15px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border: none;
+  color: white;
+  font-weight: bold;
+  width: 30%;
+  position: relative;
+  left: 35%;
+  margin-top: 20px;
+  text-transform: uppercase;
+}
+
+.button:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  cursor: pointer;
 }
