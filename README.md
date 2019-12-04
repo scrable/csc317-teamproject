@@ -1,6 +1,6 @@
 # CSC 317 Term Project
 
-## Purose
+## Purpose
 
 The pupose of this repository is to store all the code for your web application. This also includes the history of all commits made and who made them. Only code submitted on the master branch will be graded.
 
@@ -8,10 +8,10 @@ Please follow the instructions below and fill in the information requested when 
 
 ## Team  Member Information
 
-|               | Name          | Email         |
-|:-------------:|:-------------:|:-------------:|
-| Team Member 1 | namehere      | emailhere     |
-| Team Member 2 | namehere      | emailhere     |
+|               | Name          | Email                 |
+|:-------------:|:-------------:|:---------------------:|
+| Team Member 1 | Corey Russ    | cruss@mail.sfsu.edu   |
+| Team Member 2 | Maria Seljak  | mseljak@mail.sfsu.edu |
 
 ## Changing Repository Name
 
