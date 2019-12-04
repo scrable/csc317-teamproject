@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-body { background: MidnightBlue !important; }
-=======
 body { background: rgb(48, 51, 78) !important; }
->>>>>>> l_branch
+
 
 .container {
   margin: 140px 0;
@@ -11,11 +8,7 @@ body { background: rgb(48, 51, 78) !important; }
 
 .fieldset-form {
   margin-left: 25%;
-<<<<<<< HEAD
-  background-color: #2e2ed1;
-=======
   background-color: #4d4d67;
->>>>>>> l_branch
   display: flex;
   border: none;
   padding: 10%;
@@ -36,19 +29,11 @@ label {
   text-indent: -15px;
   font-family: sans-serif;
   font-size: 10px;
-<<<<<<< HEAD
-  color: #8282e3;
-}
-
-::placeholder {
-  color: #8282e3;
-=======
   color: #9ba8e3;
 }
 
 ::placeholder {
   color: #9ba8e3;
->>>>>>> l_branch
 }
 
 .checkboxes label {
@@ -67,15 +52,9 @@ label {
 
 .input-field {
   width: 100%;
-<<<<<<< HEAD
-  background-color: #202092;
-  border: 1px solid #9696e8;
-  color: #8282e3;
-=======
   background-color: #30334e;
   border: 1px solid #9dc7e8;
   color: #9dc7e8;
->>>>>>> l_branch
   box-sizing: border-box;
   padding: 10px;
   margin-bottom: 10px;
@@ -83,20 +62,12 @@ label {
 }
 
 .input-field:focus{
-<<<<<<< HEAD
-  outline: 2px solid orange;
-=======
   outline: 2px solid #16a6d1;
->>>>>>> l_branch
 }
 
 .button {
   border-radius: 2px;
-<<<<<<< HEAD
-  background-color: orange;
-=======
   background-color: #16a6d1;
->>>>>>> l_branch
   padding: 15px 30px;
   text-align: center;
   text-decoration: none;
