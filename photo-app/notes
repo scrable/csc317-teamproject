@@ -1,0 +1,19 @@
+class form grid loogin
+method post
+action /usermgnt/login
+enctype = /appllication/x-www-form-urlencoded
+create cookie on login
+delete cookie logout, and delete session
+flexbox for the navbar
+add cookieparser
+
+app.js
+
+express
+path
+cookieparser
+logger
+bodyparser
+sessions
+
+loginrouter
