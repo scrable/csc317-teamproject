@@ -1,5 +1,29 @@
 body { background: rgb(48, 51, 78) !important; }
 
+.navbar {
+  overflow: hidden;
+  background-color: black;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  font-family: sans-serif;
+  margin-right: 0;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: #9dc7e8;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  background: #9dc7e8;
+  color: #30334e;
+}
+
 .container {
   margin: 140px 0;
   align-content: center;
