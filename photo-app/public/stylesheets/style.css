@@ -23,6 +23,11 @@ body { background: rgb(48, 51, 78) !important; }
   color: #30334e;
 }
 
+.navbar a.active {
+    background: #9dc7e8;
+    color: #30334e;
+}
+
 form.search input[type=text] {
   margin-top: 70px;
   padding: 10px;
