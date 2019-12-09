@@ -23,6 +23,39 @@ body { background: rgb(48, 51, 78) !important; }
   color: #30334e;
 }
 
+form.search input[type=text] {
+  margin-top: 70px;
+  padding: 10px;
+  font-size: 15px;
+  border: 1px solid #9dc7e8;
+  width: 80%;
+  background: #4d4d67;
+  display: inline-block;
+}
+
+form.search input[type=text]:focus {
+  color: #9dc7e8;
+  outline: 2px solid #16a6d1;
+}
+form.search button {
+  width: 15%;
+  padding: 10px;
+  background: #9dc7e8;
+  color: #30334e;
+  font-size: 15px;
+  border-left: none;
+  cursor: pointer;
+}
+
+form.search button:hover {
+  background: #16a6d1;
+}
+
+form.search::after {
+  content: "";
+  clear: both;
+  display: table;
+}
 .container {
   margin: 140px 0;
   align-content: center;
