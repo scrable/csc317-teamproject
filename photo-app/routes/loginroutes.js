@@ -13,17 +13,15 @@ connection.connect(function(err){
     }
 });
 
-exports.register = function(req,res){
+exports.registration = function(req,res){
     // console.log("req",req.body);
     var today = new Date();
     var users={
-        "first_name":req.body.first_name,
-        "last_name":req.body.last_name,
+        "username":req.body.username,
         "email":req.body.email,
-        "password":req.body.password,
-        "created":today,
-        "modified":today
-    }
+        "password":req.body.inputpsw,
+
+    };
     connection.query('INSERT INTO users SET ?',users, function (error, results, fields) {
         if (error) {
             console.log("error ocurred",error);

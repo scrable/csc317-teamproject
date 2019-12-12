@@ -26,7 +26,15 @@ app.get('/login', function (req, res) {
     res.sendFile((__dirname + '/public/login.html'));
 });
 
+app.get('/registration', function (req, res) {
+    res.sendFile((__dirname + '/public/registration.html'));
+});
+
 app.post('/login',login.login);
+
+
+
+app.post('/registration',login.registration);
 
 // test route
 // router.get('/', function(req, res) {
@@ -39,6 +47,7 @@ app.post('/login',login.login);
 // router.post('/registration',login.register);
 
 app.use('/login', router);
+app.use('/registration', router);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
