@@ -39,6 +39,10 @@ app.get('/registration.html', checkRegistration, function(req, res) {
     res.sendFile((__dirname + '/public/registration.html'))
 });
 
+app.get('/logout.html', checkLogout, function (req, res) {
+    res.sendFile((__dirname + '/public/logout.html'))
+});
+
 function checkLogin(req, res, next){
     if(!req.session.user){
         next();
@@ -63,6 +67,15 @@ function checkRegistration(req, res, next){
         next();
     } else {
         var err = new Error("Already registered user");
+        next(err);
+    }
+}
+function checkLogout(req, res, next){
+    if(req.session.user){
+        req.session.destroy();
+        res.redirect('/homePage.html');
+    } else {
+        var err = new Error("Not logged in");
         next(err);
     }
 }
@@ -92,7 +105,6 @@ app.use('/login.html', function(err, req, res, next){
     res.redirect('/homePage.html');
 });
 
-
 app.use('/registration.html', function(err, req, res, next){
     console.log(err);
     //redirect if logged in
@@ -103,6 +115,12 @@ app.use('/postImage.html', function(err, req, res, next){
     console.log(err);
     //redirect if not logged in
     res.redirect('/login.html');
+});
+
+app.use('/logout.html', function(err, req, res, next){
+   console.log(err);
+   //redirect
+    res.redirect('/homePage.html');
 });
 
 app.use(express.static(path.join(__dirname, 'public')));
