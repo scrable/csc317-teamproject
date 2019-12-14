@@ -21,16 +21,22 @@ app.get('/', function (req, res) {
     res.sendFile((__dirname + '/public/homePage.html'));
 });
 
-app.get('/login.html', function (req, res, next) {
-    if(!req.session.user) {
-        res.sendFile((__dirname + '/public/login.html'));
-    }
-    else res.sendFile((__dirname + '/public/homePage.html'));
+app.get('/login.html', checkLogin, function (req, res, next) {
+    res.sendFile((__dirname + '/public/login.html'));
 });
 
 app.get('/registration.html', checkRegistration, function(req, res) {
     res.sendFile((__dirname + '/public/registration.html'))
 });
+
+function checkLogin(req, res, next){
+    if(!req.session.user){
+        next();
+    } else {
+        var err = new Error("Already logged in");
+        next(err);
+    }
+}
 
 function checkSignIn(req, res, next){
     console.log("checksignin " + req.session.id);
@@ -62,6 +68,13 @@ app.get('/homePage.html', function (req, res){
 app.post('/login.html', login.login);//(req, res)  => {
 
 app.post('/registration.html', login.registration);
+
+app.use('/login.html', function(err, req, res, next){
+    console.log(err);
+    //redirect if logged in
+    res.redirect('/homePage.html');
+});
+
 
 app.use('/registration.html', function(err, req, res, next){
     console.log(err);
