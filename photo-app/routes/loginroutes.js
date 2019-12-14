@@ -58,14 +58,14 @@ exports.login = function(req,res){
                         res.redirect("/homePage.html");
                     } else {
                         //username != password
-                        res.redirect("/login.html")
+                        res.redirect("/login")
                     }
                 } else {
                     //user doesn't exist
-                    res.redirect("/login.html")
+                    res.redirect("/login")
                 }
             }
         });
     }
-    else res.redirect("/homePage.html")
+    else res.redirect("/homePage")
 };
