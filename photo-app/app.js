@@ -23,15 +23,15 @@ app.get('/', function (req, res) {
     res.sendFile((__dirname + '/public/homePage.html'));
 });
 
-app.get('/login', function (req, res, next) {
+app.get('/login.html', function (req, res, next) {
     if(!req.session.user) {
         res.sendFile((__dirname + '/public/login.html'));
     }
     else res.sendFile((__dirname + '/public/homePage.html'));
 });
 
-app.get('/registration', function (req, res) {
-    res.sendFile((__dirname + '/public/registration.html'));
+app.get('/registration.html', checkRegistration, function(req, res) {
+    res.sendFile((__dirname + '/public/registration.html'))
 });
 
 function checkSignIn(req, res, next){
@@ -44,31 +44,45 @@ function checkSignIn(req, res, next){
     }
 }
 
-app.get('/postImage', checkSignIn, function(req, res){
+function checkRegistration(req, res, next){
+    //console.log("checkregistration " + req.session.id);
+    if(!req.session.user){
+        next();
+    } else {
+        var err = new Error("Already registered user");
+        next(err);
+    }
+}
+
+app.get('/postImage.html', checkSignIn, function(req, res){
     res.sendFile((__dirname + '/public/postImage.html'), {id: req.session.user.id})
 });
 
-app.get('/homePage', function (req, res){
+app.get('/homePage.html', function (req, res){
     res.sendFile(__dirname + '/public/homePage.html')
 });
 
-app.post('/login', login.login);//(req, res)  => {
+app.post('/login.html', login.login);//(req, res)  => {
 
-app.post('/registration',login.registration);
+app.post('/registration.html', login.registration);
 
-app.use('/registration', router);
+app.use('/registration.html', function(err, req, res, next){
+    console.log(err);
+    //redirect if logged in
+    res.redirect('/homePage.html');
+});
 
-app.use('/postImage', function(err, req, res, next){
+app.use('/postImage.html', function(err, req, res, next){
     console.log(err);
     //redirect if not logged in
-    res.redirect('/login');
+    res.redirect('/login.html');
 });
 
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', router);
 
-app.use('/users', usersRouter);
+app.use('/users.html', usersRouter);
 
 app.listen(5000);
 

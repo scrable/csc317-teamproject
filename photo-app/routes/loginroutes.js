@@ -14,6 +14,8 @@ connection.connect(function(err){
 });
 
 exports.registration = function(req,res){
+    if(req.session.user)
+        res.redirect("/homePage.html");
     var users={
         "username":req.body.username,
         "email":req.body.email,
@@ -53,7 +55,7 @@ exports.login = function(req,res){
                     if (results[0].password == password) {
                         //good credentials
                         req.session.user = results[0];
-                        res.redirect("/homePage");
+                        res.redirect("/homePage.html");
                     } else {
                         //username != password
                         res.redirect("/login")
