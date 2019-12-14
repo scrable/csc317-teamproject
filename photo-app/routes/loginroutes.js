@@ -39,6 +39,7 @@ exports.registration = function(req,res){
     });
 };
 
+
 exports.login = function(req,res){
     console.log("login " + req.session.id);
     if(!req.session.user) {
