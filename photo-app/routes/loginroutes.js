@@ -39,38 +39,38 @@ exports.registration = function(req,res){
     });
 };
 
-exports.login = function(req,res){
-    var username= req.body.username;
-    var password = req.body.password;
-    connection.query('SELECT password FROM `csc317db`.`users` WHERE username=?;',[username], function (error, results, fields) {
-        if (error) {
-            // console.log("error ocurred",error);
-            res.send({
-                "code":400,
-                "failed":"error ocurred"
-            })
-        }else{
-            // console.log('The solution is: ', results);
-            if(results.length >0){
-                if(results[0].password == password){
-                    res.send({
-                        "code":200,
-                        "success":"login sucessfull"
-                    });
-                }
-                else{
-                    res.send({
-                        "code":204,
-                        "success":"Username and password does not match"
-                    });
-                }
-            }
-            else{
-                res.send({
-                    "code":204,
-                    "success":"Username does not exist"
-                });
-            }
-        }
-    });
-};
+// exports.login = function(req,res){
+//     var username= req.body.username;
+//     var password = req.body.password;
+//     connection.query('SELECT password FROM `csc317db`.`users` WHERE username=?;',[username], function (error, results, fields) {
+//         if (error) {
+//             // console.log("error ocurred",error);
+//             res.send({
+//                 "code":400,
+//                 "failed":"error ocurred"
+//             })
+//         }else{
+//             // console.log('The solution is: ', results);
+//             if(results.length >0){
+//                 if(results[0].password == password){
+//                     //good credentials
+//                     res.cookie('access_token', {token: "123"});
+//                     res.redirect("/")
+//
+//                 }
+//                 else{
+//                     //username != password
+//                     res.redirect("/login")
+//                 }
+//             }
+//             else{
+//                 //user doesn't exist
+//                 res.redirect("/login")
+//             }
+//         }
+//
+//          res.sendFile((__dirname + '/public/login.html'));
+//         // res.render("login");
+//     });
+//
+// };
