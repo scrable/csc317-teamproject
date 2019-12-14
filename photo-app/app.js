@@ -4,8 +4,6 @@ var login = require('./routes/loginroutes');
 var bodyParser = require('body-parser');
 var app = express();
 var path = require('path');
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var session = require('express-session');
 var router = express.Router();
 
@@ -45,7 +43,6 @@ function checkSignIn(req, res, next){
 }
 
 function checkRegistration(req, res, next){
-    //console.log("checkregistration " + req.session.id);
     if(!req.session.user){
         next();
     } else {
@@ -81,8 +78,6 @@ app.use('/postImage.html', function(err, req, res, next){
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', router);
-
-app.use('/users.html', usersRouter);
 
 app.listen(5000);
 
