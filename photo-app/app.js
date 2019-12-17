@@ -1,6 +1,7 @@
 
 var express    = require("express");
 var login = require('./routes/loginroutes');
+var postimage = require('./routes/postimage');
 var bodyParser = require('body-parser');
 var app = express();
 var path = require('path');
@@ -82,6 +83,8 @@ app.post('/login.html', login.login);//(req, res)  => {
 
 app.post('/registration.html', login.registration);
 
+app.post('/postImage.html', postimage.postimage);
+
 app.use('/login.html', function(err, req, res, next){
     console.log(err);
     //redirect if logged in
@@ -91,7 +94,7 @@ app.use('/login.html', function(err, req, res, next){
 app.use('/registration.html', function(err, req, res, next){
     console.log(err);
     //redirect if logged in
-    res.redirect('/homePage.html');
+    res.redirect('/login.html');
 });
 
 app.use('/postImage.html', function(err, req, res, next){

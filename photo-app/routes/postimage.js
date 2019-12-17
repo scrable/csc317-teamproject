@@ -1,6 +1,5 @@
 var mysql      = require('mysql');
-var express    = require("express");
-var app = express();
+
 var connection = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
@@ -16,28 +15,25 @@ connection.connect(function(err){
 });
 
 exports.postimage = function (req, res, next){
-    console.log(req.body.description);
+   // console.log(res.body.description);
+    console.log(req.session.user);
+    var date = new Date();
     var imageInfo = {
         "title":req.body.title,
         "description":req.body.description,
+        "fk_userid":req.session.user,
+        "active":"1",
+        "photopath": "/public/images/" + date.getMonth() + date.getFullYear() + date.getDay() + date.getHours() + date.getMinutes() + date.getSeconds() + req.body.img,
     };
-    connection.query('INSERT INTO imageposts SET ?', imageInfo, function (error, results, fields) {
+    connection.query('INSERT INTO imageposts SET ?;', imageInfo, function (error, results, fields) {
         if (error) {
             console.log("error ocurred",error);
-            res.send({
-                "code":400,
-                "failed":"error ocurred"
-            })
         }else{
             console.log('The solution is: ', results);
-            res.send({
-                "code":200,
-                "success":"user registered sucessfully"
-            });
         }
     });
 
 
     console.log("image sent");
-    res.redirect('../homePage');
+    res.redirect('/homePage.html');
 };
