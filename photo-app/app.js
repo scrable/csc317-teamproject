@@ -3,6 +3,7 @@ var express    = require("express");
 var login = require('./routes/loginroutes');
 var postimage = require('./routes/postimage');
 var bodyParser = require('body-parser');
+const fileUpload = require('express-fileupload');
 var app = express();
 var path = require('path');
 var session = require('express-session');
@@ -17,6 +18,7 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
+app.use(fileUpload());
 
 app.get('/', function (req, res) {
     res.sendFile((__dirname + '/public/homePage.html'));
