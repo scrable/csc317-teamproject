@@ -28,7 +28,7 @@ app.get('/login.html', checkLogin, function (req, res, next) {
     res.sendFile((__dirname + '/public/login.html'));
 });
 
-app.get('/registration.html', checkRegistration, function(req, res) {
+app.get('/registration.html', checkRegistration, function(req, res, next) {
     res.sendFile((__dirname + '/public/registration.html'))
 });
 
@@ -83,7 +83,7 @@ app.get('/homePage.html', function (req, res){
 
 app.post('/login.html', login.login);//(req, res)  => {
 
-app.post('/registration.html', login.registration);
+app.post('/registration.html', login.registration, login.login);
 
 app.post('/postImage.html', postimage.postimage);
 
@@ -95,6 +95,8 @@ app.use('/login.html', function(err, req, res, next){
 
 app.use('/registration.html', function(err, req, res, next){
     console.log(err);
+    console.log("im here");
+    //login.login(req, res);
     //redirect if logged in
     res.redirect('/login.html');
 });

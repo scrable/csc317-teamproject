@@ -17,7 +17,8 @@ connection.connect(function(err){
 });
 
 exports.postimage = function (req, res, next){
-   // console.log(res.body.description);
+    if (!req.files)
+        res.redirect('/postImage.html');
     console.log(req.session.user);
     var date = new Date();
     var filePathTime =  "" + date.getMonth() + date.getFullYear() + date.getDay() + date.getHours() + date.getMinutes() + date.getSeconds() + req.files.img.name;
