@@ -26,7 +26,10 @@
 <div class="flexbox">
     <%if(typeof data == 'object' && data && data.length) {
         for(var i = data.length - 1; i >= 0; i--) { %>
-    <div class="item"><img src="<%= data[i].photopath %>" style="max-width: 100%;" alt=""></div>
+        <%var tempPath = data[i].photopath%>
+        <%console.log(tempPath)%>
+        <%var detail = "/imageDetails" + data[i].id%>
+        <div class="item"><a class="homeImg" href="<%=detail%>"> <img src="<%= data[i].photopath %>" style="max-width: 100%;" alt=""> </a></div>
     <%}}%>
 
 

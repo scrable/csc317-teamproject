@@ -2,6 +2,7 @@
 var express    = require("express");
 var login = require('./routes/loginroutes');
 var postimage = require('./routes/postimage');
+var imageDetails = require('./routes/imagedetails');
 var home = require('./routes/home');
 var bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
@@ -61,6 +62,8 @@ app.get('/logout.html', checkLogout, function (req, res) {
 app.get('/postImage.html', checkSignIn, function(req, res){
     res.render('postImage', {isLoggedIn: isLoggedIn});
 });
+
+app.get('/imageDetails*', imageDetails.details);
 
 app.get('/homePage.html', function(req, res) {
     if(req.session.user){
