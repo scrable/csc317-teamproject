@@ -2,12 +2,16 @@
 var express    = require("express");
 var login = require('./routes/loginroutes');
 var postimage = require('./routes/postimage');
+var home = require('./routes/home');
 var bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
 var app = express();
 var path = require('path');
 var session = require('express-session');
 var router = express.Router();
+
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
 app.use(session({secret: 'greetings', saveUninitialized: false, resave: true,
     cookie:{maxAge: 60000000, httpOnly: true, secure: false}}));
@@ -35,6 +39,8 @@ app.get('/registration.html', checkRegistration, function(req, res, next) {
 app.get('/logout.html', checkLogout, function (req, res) {
     res.sendFile((__dirname + '/public/logout.html'))
 });
+
+app.get('/homePage.html', home.list);
 
 function checkLogin(req, res, next){
     if(!req.session.user){
@@ -77,10 +83,32 @@ app.get('/postImage.html', checkSignIn, function(req, res){
     res.sendFile((__dirname + '/public/postImage.html'), {id: req.session.user.id})
 });
 
-app.get('/homePage.html', function (req, res){
-    res.sendFile(__dirname + '/public/homePage.html')
+
+
+//get all alternates without html to redirect to with
+
+app.get('/homePage', function(req, res) {
+    res.redirect('/homePage.html');
 });
 
+app.get('/login', function(req, res) {
+    res.redirect('/login.html');
+});
+
+app.get('/logout', function(req, res) {
+    res.redirect('/logout.html');
+});
+
+app.get('/registration', function(req, res) {
+    res.redirect('/registration.html');
+});
+
+app.get('/postImage', function(req, res) {
+    res.redirect('/postImage.html');
+});
+
+
+//get some posts
 app.post('/login.html', login.login);//(req, res)  => {
 
 app.post('/registration.html', login.registration, login.login);

@@ -1,0 +1,27 @@
+<html><body>
+<link rel="stylesheet" href="/stylesheets/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class = "navbar">
+    <a class="active" href="homePage.html">Home</a>
+    <a id="login" href="login.html">Log In</a>
+    <a id="logout" href="logout.html">Log Out</a>
+    <a id="signup" href="registration.html">Sign Up</a>
+    <a id="postimg" href="postImage.html">Post Image</a>
+</div>
+
+<form class="search">
+    <input type="text" placeholder="Search..." name="searchbar">
+    <button type="submit"><i class="fa fa-search"></i></button>
+</form>
+
+<div class="flex-container">
+    <% if(data.length){
+        for(var i = data.length - 1; i >= 0; i--) { %>
+    <div><img src="<%=data[i].photopath%>" style="max-width: 100%;" alt=""></div>
+    <% }
+    }%>
+</div>
+
+
+</body></html>

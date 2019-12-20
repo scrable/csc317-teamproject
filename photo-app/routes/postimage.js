@@ -27,7 +27,7 @@ exports.postimage = function (req, res, next){
         "description":req.body.description,
         "fk_userid":req.session.user,
         "active":"1",
-        "photopath": "/public/images/" + filePathTime,
+        "photopath": "images/" + filePathTime,
     };
     var file = req.files.img;
 
