@@ -25,19 +25,23 @@ app.use(function(req, res, next) {
 app.use(fileUpload());
 
 app.get('/', function (req, res) {
-    res.sendFile((__dirname + '/public/homePage.html'));
+    home.list(req, res);
 });
 
 app.get('/login.html', checkLogin, function (req, res, next) {
-    res.sendFile((__dirname + '/public/login.html'));
+    res.render('login');
 });
 
 app.get('/registration.html', checkRegistration, function(req, res, next) {
-    res.sendFile((__dirname + '/public/registration.html'))
+    res.render('registration');
 });
 
 app.get('/logout.html', checkLogout, function (req, res) {
-    res.sendFile((__dirname + '/public/logout.html'))
+    res.render('logout');
+});
+
+app.get('/postImage.html', checkSignIn, function(req, res){
+    res.render('postImage');
 });
 
 app.get('/homePage.html', home.list);
@@ -79,12 +83,6 @@ function checkLogout(req, res, next){
     }
 }
 
-app.get('/postImage.html', checkSignIn, function(req, res){
-    res.sendFile((__dirname + '/public/postImage.html'), {id: req.session.user.id})
-});
-
-
-
 //get all alternates without html to redirect to with
 
 app.get('/homePage', function(req, res) {
@@ -107,7 +105,6 @@ app.get('/postImage', function(req, res) {
     res.redirect('/postImage.html');
 });
 
-
 //get some posts
 app.post('/login.html', login.login);//(req, res)  => {
 
@@ -124,7 +121,6 @@ app.use('/login.html', function(err, req, res, next){
 app.use('/registration.html', function(err, req, res, next){
     console.log(err);
     console.log("im here");
-    //login.login(req, res);
     //redirect if logged in
     res.redirect('/login.html');
 });

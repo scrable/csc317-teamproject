@@ -1,3 +1,4 @@
+var home = require('./../routes/home');
 var mysql = require('mysql');
 var connection = mysql.createConnection({
     host: 'localhost',
@@ -27,7 +28,7 @@ exports.registration = function (req, res, next) {
             if (users.username === results[0].username)
                 console.log("The username already exists");
             //do something to display that here
-                res.redirect("/registration.html");
+            res.render('registration');
         }
         else {
             (connection.query('SELECT email FROM `csc317db`.`users` WHERE email=?;', users.email, function (error, results, fields) {
@@ -35,7 +36,7 @@ exports.registration = function (req, res, next) {
                     if (users.email === results[0].email)
                         console.log("The email already exists");
                     //do something to display it here
-                        res.redirect("/registration.html");
+                    res.render('registration');
                 } else {
                     connection.query('INSERT INTO users SET ?', users, function (error, results, fields) {
                         if (error) {
@@ -55,7 +56,6 @@ exports.registration = function (req, res, next) {
 };
 
 exports.login = function (req, res) {
-    console.log("here");
     if (!req.session.user) {
         var username = req.body.username;
         var password = req.body.password;
@@ -68,22 +68,28 @@ exports.login = function (req, res) {
                         if (results[i].password === password) {
                             connection.query('SELECT id FROM `csc317db`.`users` WHERE username=?;', [username], function (error, r, fields) {
                                 //good credentials
+                                console.log("logged in");
                                 req.session.user = r[0].id;
                                 console.log(r[0].id);
                                 console.log(req.session.user);
-                                res.redirect("/homePage.html");
+                                home.list(req, res);
+                                // res.render('homePage');
+                                // res.redirect("/homePage.html");
                             });
                         } else {
                             //username != password
                             console.log("username and password do not match");
-                            res.redirect("/login.html")
+                            // res.redirect("/login.html")
+                            res.render('login');
                         }
                     }
                 } else {
                     //user doesn't exist
-                    res.redirect("/login.html")
+                    console.log("username does not exist");
+                    // res.redirect("/login.html")
+                    res.render('login');
                 }
             }
         });
-    } else res.redirect("/homePage.html")
+    } else home.list(req, res);
 };
