@@ -1,6 +1,6 @@
 var path = require('path');
 
-exports.postimage = function (req, res, next){
+exports.postimage = function (req, res){
     if (!req.files)
         res.redirect('/postImage.html');
     console.log(req.session.user);
@@ -17,11 +17,9 @@ exports.postimage = function (req, res, next){
 
     console.log(__dirname);
     file.mv(path.resolve(__dirname, '..')+'/public/images/' + filePathTime);
-    connection.query('INSERT INTO imageposts SET ?;', imageInfo, function (error, results, fields) {
+    connection.query('INSERT INTO imageposts SET ?;', imageInfo, function (error) {
         if (error) {
             console.log("error ocurred",error);
-        }else{
-            console.log('The solution is: ', results);
         }
     });
 
