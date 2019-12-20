@@ -11,6 +11,8 @@ var session = require('express-session');
 var router = express.Router();
 global["isLoggedIn"] = false;
 
+const { check, validationResult } = require('express-validator');
+
 mysql = require('mysql');
 global["connection"] = mysql.createConnection({
     host: 'localhost',
