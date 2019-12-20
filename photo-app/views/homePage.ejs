@@ -23,10 +23,10 @@
     <button type="submit"><i class="fa fa-search"></i></button>
 </form>
 
-<div class="flex-container">
+<div class="flexbox">
     <%if(typeof data == 'object' && data && data.length) {
         for(var i = data.length - 1; i >= 0; i--) { %>
-    <div><img src="<%= data[i].photopath %>" style="max-width: 100%;" alt=""></div>
+    <div class="item"><img src="<%= data[i].photopath %>" style="max-width: 100%;" alt=""></div>
     <%}}%>
 
 
