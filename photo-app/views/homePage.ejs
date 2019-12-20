@@ -16,6 +16,7 @@
 </form>
 
 <div class="flex-container">
+    <%if(this.data)%>
     <% if(data.length){
         for(var i = data.length - 1; i >= 0; i--) { %>
     <div><img src="<%=data[i].photopath%>" style="max-width: 100%;" alt=""></div>
