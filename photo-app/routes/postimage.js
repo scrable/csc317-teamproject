@@ -1,22 +1,6 @@
-var mysql      = require('mysql');
-
 var path = require('path');
 
-var connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : 'password',
-    database : 'csc317db'
-});
-connection.connect(function(err){
-    if(!err) {
-        console.log("Database is connected ... nn");
-    } else {
-        console.log("Error connecting database ... nn");
-    }
-});
-
-exports.postimage = function (req, res, next){
+exports.postimage = function (req, res){
     if (!req.files)
         res.redirect('/postImage.html');
     console.log(req.session.user);
@@ -27,17 +11,15 @@ exports.postimage = function (req, res, next){
         "description":req.body.description,
         "fk_userid":req.session.user,
         "active":"1",
-        "photopath": "/public/images/" + filePathTime,
+        "photopath": "images/" + filePathTime,
     };
     var file = req.files.img;
 
     console.log(__dirname);
     file.mv(path.resolve(__dirname, '..')+'/public/images/' + filePathTime);
-    connection.query('INSERT INTO imageposts SET ?;', imageInfo, function (error, results, fields) {
+    connection.query('INSERT INTO imageposts SET ?;', imageInfo, function (error) {
         if (error) {
             console.log("error ocurred",error);
-        }else{
-            console.log('The solution is: ', results);
         }
     });
 
