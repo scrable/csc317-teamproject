@@ -1,3 +1,4 @@
+
 var mysql = require('mysql');
 var connection = mysql.createConnection({
     host: 'localhost',
@@ -15,7 +16,7 @@ connection.connect(function (err) {
 exports.list = function(req, res){
 
 
-        var query = connection.query('SELECT * FROM `csc317db`.`imageposts`;',function(err,rows){
+        connection.query('SELECT * FROM `csc317db`.`imageposts`;',function(err,rows){
             if(err)
                 console.log("Error Selecting : %s ",err );
 
