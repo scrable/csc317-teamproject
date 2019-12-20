@@ -9,6 +9,22 @@ var app = express();
 var path = require('path');
 var session = require('express-session');
 var router = express.Router();
+global["isLoggedIn"] = false;
+
+mysql = require('mysql');
+global["connection"] = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'password',
+    database: 'csc317db'
+});
+global["connection"].connect(function (err) {
+    if (!err) {
+        console.log("Database is connected ... nn");
+    } else {
+        console.log("Error connecting database ... nn");
+    }
+});
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -29,22 +45,36 @@ app.get('/', function (req, res) {
 });
 
 app.get('/login.html', checkLogin, function (req, res, next) {
-    res.render('login');
+    res.render('login', {isLoggedIn: isLoggedIn});
 });
 
 app.get('/registration.html', checkRegistration, function(req, res, next) {
-    res.render('registration');
+    res.render('registration', {isLoggedIn: isLoggedIn});
 });
 
 app.get('/logout.html', checkLogout, function (req, res) {
-    res.render('logout');
+    isLoggedIn = false;
+    res.render('logout', {isLoggedIn: isLoggedIn});
+
 });
 
 app.get('/postImage.html', checkSignIn, function(req, res){
-    res.render('postImage');
+    res.render('postImage', {isLoggedIn: isLoggedIn});
 });
 
-app.get('/homePage.html', home.list);
+app.get('/homePage.html', function(req, res) {
+    if(req.session.user){
+        isLoggedIn = true;
+    }
+    else isLoggedIn = false;
+    connection.query('SELECT * FROM `csc317db`.`imageposts`;',function(err,rows){
+        if(err)
+            console.log("Error Selecting : %s ",err );
+        res.render('homePage',{page_title:"Test Table",data:rows, isLoggedIn: isLoggedIn});
+    });
+});
+
+
 
 function checkLogin(req, res, next){
     if(!req.session.user){

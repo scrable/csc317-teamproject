@@ -1,18 +1,4 @@
 var home = require('./../routes/home');
-var mysql = require('mysql');
-var connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'password',
-    database: 'csc317db'
-});
-connection.connect(function (err) {
-    if (!err) {
-        console.log("Database is connected ... nn");
-    } else {
-        console.log("Error connecting database ... nn");
-    }
-});
 
 exports.registration = function (req, res, next) {
     if (req.session.user)
@@ -69,12 +55,11 @@ exports.login = function (req, res) {
                             connection.query('SELECT id FROM `csc317db`.`users` WHERE username=?;', [username], function (error, r, fields) {
                                 //good credentials
                                 console.log("logged in");
+                                global["isLoggedIn"] = true;
                                 req.session.user = r[0].id;
                                 console.log(r[0].id);
                                 console.log(req.session.user);
                                 home.list(req, res);
-                                // res.render('homePage');
-                                // res.redirect("/homePage.html");
                             });
                         } else {
                             //username != password
