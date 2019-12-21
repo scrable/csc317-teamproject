@@ -3,6 +3,7 @@ var express    = require("express");
 var login = require('./routes/loginroutes');
 var postimage = require('./routes/postimage');
 var imageDetails = require('./routes/imagedetails');
+var searchResults = require('./routes/searchResults');
 var home = require('./routes/home');
 var bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
@@ -144,6 +145,8 @@ app.post('/login.html', login.login);//(req, res)  => {
 app.post('/registration.html', login.registration, login.login);
 
 app.post('/postImage.html', postimage.postimage);
+
+app.post('/homePage.html', searchResults.list);
 
 app.post('/imageDetails*', postimage.postcomment);
 
