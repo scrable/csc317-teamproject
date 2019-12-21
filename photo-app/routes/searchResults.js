@@ -1,6 +1,5 @@
 exports.list = function(req, res){
 
-console.log("search: " + req.body.searchbar);
 var naptime = req.body.searchbar;
 
 var sql1 = "SELECT * FROM `csc317db`.`imageposts` WHERE title=?";

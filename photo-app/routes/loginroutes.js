@@ -57,8 +57,6 @@ exports.login = function (req, res) {
                                 console.log("logged in");
                                 global["isLoggedIn"] = true;
                                 req.session.user = r[0].id;
-                                console.log(r[0].id);
-                                console.log(req.session.user);
                                 home.list(req, res);
                             });
                         } else {

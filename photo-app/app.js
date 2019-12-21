@@ -22,9 +22,9 @@ global["connection"] = mysql.createConnection({
 });
 global["connection"].connect(function (err) {
     if (!err) {
-        console.log("Database is connected ... nn");
+        console.log("Database is connected");
     } else {
-        console.log("Error connecting database ... nn");
+        console.log("Error connecting database");
     }
 });
 
@@ -90,7 +90,6 @@ function checkLogin(req, res, next){
 }
 
 function checkSignIn(req, res, next){
-    console.log("checksignin " + req.session.id);
     if(req.session.user){
         next();
     } else {
@@ -158,7 +157,6 @@ app.use('/login.html', function(err, req, res, next){
 
 app.use('/registration.html', function(err, req, res, next){
     console.log(err);
-    console.log("im here");
     //redirect if logged in
     res.redirect('/login.html');
 });

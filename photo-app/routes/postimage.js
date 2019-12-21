@@ -3,7 +3,6 @@ var path = require('path');
 exports.postimage = function (req, res){
     if (!req.files)
         res.redirect('/postImage.html');
-    console.log(req.session.user);
     var date = new Date();
     var filePathTime =  "" + date.getMonth() + date.getFullYear() + date.getDay() + date.getHours() + date.getMinutes() + date.getSeconds() + req.files.img.name;
     var imageInfo = {
@@ -15,7 +14,6 @@ exports.postimage = function (req, res){
     };
     var file = req.files.img;
 
-    console.log(__dirname);
     file.mv(path.resolve(__dirname, '..')+'/public/images/' + filePathTime);
     connection.query('INSERT INTO imageposts SET ?;', imageInfo, function (error) {
         if (error) {
@@ -39,8 +37,6 @@ exports.postcomment = function (req, res) {
             console.log("error ocurred",error);
         }
         if(result.length > 0){
-            console.log("alkflakfns: " + result[0].username);
-
             var commentInfo = {
 
                 "comment": req.body.comment,
@@ -54,7 +50,6 @@ exports.postcomment = function (req, res) {
                     console.log("error ocurred", error);
                 }
             });
-            console.log(commentInfo);
         }
     });
 
