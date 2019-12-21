@@ -43,7 +43,7 @@ app.use(function(req, res, next) {
 app.use(fileUpload());
 
 app.get('/', function (req, res) {
-    home.list(req, res);
+    res.redirect('/homePage.html');
 });
 
 app.get('/login.html', checkLogin, function (req, res, next) {
