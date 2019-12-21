@@ -28,7 +28,9 @@ Which ever member created the repository will need to invite the other member to
 
 # Build/Run Instructions
 
-First, clone the repo
+Install mysql and Node.js
+
+Clone the repo
 
 ```git clone https://github.com/csc317-02-fall2019/csc317-termproject-team16```
 
