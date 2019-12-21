@@ -3,6 +3,7 @@ var express    = require("express");
 var login = require('./routes/loginroutes');
 var postimage = require('./routes/postimage');
 var imageDetails = require('./routes/imagedetails');
+var searchResults = require('./routes/searchResults');
 var home = require('./routes/home');
 var bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
@@ -21,9 +22,9 @@ global["connection"] = mysql.createConnection({
 });
 global["connection"].connect(function (err) {
     if (!err) {
-        console.log("Database is connected ... nn");
+        console.log("Database is connected");
     } else {
-        console.log("Error connecting database ... nn");
+        console.log("Error connecting database");
     }
 });
 
@@ -42,7 +43,7 @@ app.use(function(req, res, next) {
 app.use(fileUpload());
 
 app.get('/', function (req, res) {
-    home.list(req, res);
+    res.redirect('/homePage.html');
 });
 
 app.get('/login.html', checkLogin, function (req, res, next) {
@@ -89,7 +90,6 @@ function checkLogin(req, res, next){
 }
 
 function checkSignIn(req, res, next){
-    console.log("checksignin " + req.session.id);
     if(req.session.user){
         next();
     } else {
@@ -145,6 +145,10 @@ app.post('/registration.html', login.registration, login.login);
 
 app.post('/postImage.html', postimage.postimage);
 
+app.post('/homePage.html', searchResults.list);
+
+app.post('/imageDetails*', postimage.postcomment);
+
 app.use('/login.html', function(err, req, res, next){
     console.log(err);
     //redirect if logged in
@@ -153,7 +157,6 @@ app.use('/login.html', function(err, req, res, next){
 
 app.use('/registration.html', function(err, req, res, next){
     console.log(err);
-    console.log("im here");
     //redirect if logged in
     res.redirect('/login.html');
 });

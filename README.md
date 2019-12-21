@@ -28,4 +28,28 @@ Which ever member created the repository will need to invite the other member to
 
 # Build/Run Instructions
 
-Below please explain how to fully install and run your application.
+First, clone the repo
+
+```git clone https://github.com/csc317-02-fall2019/csc317-termproject-team16```
+
+cd into the directory, and init the database
+
+```cd csc317-termproject-team16```
+
+```mysql --user="root" --password="password" < init.sql```
+
+Navigate into the project folder
+
+```cd photo-app```
+
+Build node
+
+```npm install```
+
+Start the server
+
+```npm start```
+
+Navigate in browser to:
+
+```localhost:3000/```
