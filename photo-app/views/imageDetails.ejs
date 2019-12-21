@@ -41,6 +41,33 @@
         </p>
     </div>
 
+    <form method="POST" name="postComment">
+        <fieldset class="comments-form">
+            <label for="ptitle">Comment</label>
+            <textarea class="input-field" id="comments" placeholder="Enter Comment" name="comment"></textarea>
+
+            <input class="button" type="submit" value="Submit">
+        </fieldset>
+    </form>
+
+
+    <div class="commentContainer">
+        <%if(typeof cmnts == 'object' && cmnts.length) {
+            for(var i = cmnts.length - 1; i >= 0; i--) { %>
+                <%var comment = "" + cmnts[i].comment%>
+                <%var user = "" + cmnts[i].poster%>
+
+                <p class="comment-poster">
+                    <%= user %>
+                </p>
+                <p class="comment">
+                    <%= comment %>
+                </p>
+
+        <%}}%>
+    </div>
+<!--    (typeof cms == 'object' && !cms.length)-->
+
 </div>
 
 

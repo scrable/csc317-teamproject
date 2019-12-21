@@ -72,7 +72,8 @@ form.search::after {
 }
 
 .fieldset-form {
-    margin-left: 25%;
+    margin-left: auto;
+    margin-right: auto;
     background-color: #4d4d67;
     display: flex;
     border: none;
@@ -185,4 +186,33 @@ label {
 .flexbox {
     columns: 300px;
     column-gap: 20px;
+}
+
+.comments-form {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    border: none;
+    padding: 10%;
+    width: 50%;
+}
+
+.comment{
+    font-family: sans-serif;
+    color: snow;
+    font-size: 18px;
+    text-align: left;
+}
+
+.comment-poster{
+    font-family: sans-serif;
+    font-weight: bold;
+    color: snow;
+    font-size: 20px;
+    text-align: left;
+}
+.commentContainer{
+    width:40%;
+    margin-left: auto;
+    margin-right:auto;
 }

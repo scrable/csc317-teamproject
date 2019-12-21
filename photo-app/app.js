@@ -145,6 +145,8 @@ app.post('/registration.html', login.registration, login.login);
 
 app.post('/postImage.html', postimage.postimage);
 
+app.post('/imageDetails*', postimage.postcomment);
+
 app.use('/login.html', function(err, req, res, next){
     console.log(err);
     //redirect if logged in
